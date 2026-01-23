@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    // 禁止重复的 case 标签
+    "no-duplicate-case": 2,
+    // 限制圈复杂度，也就是类似if else能连续接多少个
+    "complexity": [2, 20],
+    "@typescript-eslint/no-empty-function": [
+      "off"
+    ],
+    "@typescript-eslint/ban-ts-comment": [
+      "off"
+    ],
+    "curly": "error",
+    "semi":"warn",
+    "max-depth": ["warn", 3],
+    "no-implied-eval":"warn",
+    "no-mixed-operators": ["warn"],
+    "no-unused-vars": ["warn"]
+  }
+}
