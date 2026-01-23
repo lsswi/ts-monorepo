@@ -8,6 +8,37 @@
 
 <br>
 
+## 目录结构
+```
+tree -L 4 -I "node_modules"
+.
+├── package.json
+├── packages
+│   ├── core
+│   │   ├── dist
+│   │   │   ├── index.d.ts
+│   │   │   └── index.js
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   └── index.ts
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.tsbuildinfo
+│   └── utils
+│       ├── dist
+│       │   ├── index.d.ts
+│       │   └── index.js
+│       ├── package.json
+│       ├── src
+│       │   └── index.ts
+│       └── tsconfig.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── README.md
+└── tsconfig.json
+```
+
+<br>
+
 
 ## 基础配置
 
