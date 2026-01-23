@@ -1,10 +1,12 @@
 # ts-monorepo
 
-> **pnpm-workspace + nx + changeset**
+> **pnpm-workspace + changeset + tsup + turbo + nx**
 > 
-> - pnpm-workspace管理多包之间的workspace，保证包之间的引用在本地而非远程
-> - changeset 管理版本变更，包和包之间的版本管理
-> - nx 发布构建和编排
+> - pnpm-workspace：管理多包之间的workspace，保证包之间的引用在本地而非远程
+> - changeset：管理版本变更，包和包之间的版本管理
+> - tsup：基于esbuild的打包工具
+> - turbo：
+> - nx：发布构建和编排
 
 <br>
 
@@ -107,6 +109,16 @@ packages:
 
 <br>
 
+## 关于打包
+
+### 为什么要使用Turbo？
+如果是无脑`pnpm -r build`，有可能出现主包打的过程中子包还没打好，导致打包错误，需要在根`package.json`中指定顺序，看起来非常蠢。（详见**tag：build-in-order**
+```json
+"build": "pnpm --filter @ts-monorepo/utils build && pnpm --filter @ts-monorepo/core build",
+```
+使用 `Turbo` 可以自动处理依赖顺序，非常优雅。
+
+
 
 ## changeset 使用流程
 
@@ -149,7 +161,13 @@ feat: add ccc
 3. 发布的时候切出发布分支，如`realease/v0.17`，执行`pnpm changeset version`自动完成版本更新和.md文件的删除，然后合回`master`分支。
 <br>
 
-4. 对release分支针对不同的包打tag，即多个包用同一个commit打对应的tag
+4. 打包发布
+```
+pnpm build
+pnpm changeset publish --registry https://npm.your-company.com
+```
+
+5. 对release分支针对不同的包打tag，即多个包用同一个commit打对应的tag
 ```shell
 # -a 标签名，-m 备注信息
 git tag -a utils@1.0.1 -m "utils v1.0.1"
