@@ -5,7 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build",
+    "build": "pnpm --filter @ts-monorepo/utils build && pnpm --filter @ts-monorepo/core build",
+    "build:utils": "pnpm --filter @ts-monorepo/utils build",
+    "build:core": "pnpm --filter @ts-monorepo/core build",
     "dev": "turbo run dev",
     "changeset": "changeset",
     "version-packages": "changeset version",

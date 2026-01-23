@@ -5,8 +5,8 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean --outDir dist",
+    "dev": "tsup src/index.ts --format esm --dts --watch"
   },
   "dependencies": {
     "@ts-monorepo/utils": "0.5.0"
