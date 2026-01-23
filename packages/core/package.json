@@ -1,6 +1,6 @@
 {
   "name": "@ts-monorepo/core",
-  "version": "0.1.0",
+  "version": "0.4.2",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -9,6 +9,6 @@
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
   },
   "dependencies": {
-    "@ts-monorepo/utils": "workspace:*"  
+    "@ts-monorepo/utils": "0.5.0"
   }
 }

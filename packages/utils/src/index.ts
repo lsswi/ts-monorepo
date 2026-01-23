@@ -6,3 +6,18 @@ export const generateId = (): string => {
 export const sum = (a: number, b: number): number => {
   return a + b;
 };
+
+// 新增代码
+export const formatNumber = (num: number): string => {
+  return num.toLocaleString('zh-CN');
+};
+
+// add comments
+
+// fix sth
+
+// add some features
+
+// add ddd
+
+// add ccc
