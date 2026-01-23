@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,  // 项目引用的前提
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*"],  // 子包自己管理源码范围
+  "exclude": ["node_modules", "dist"]
+}

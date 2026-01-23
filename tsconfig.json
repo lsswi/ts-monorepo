@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ts-monorepo/*": ["packages/*/src"]
+    }
+  },
+  "files": [],
+  "include": [],  // 显式声明：根配置无需要编译的文件（核心修复点）
+  "exclude": ["node_modules", "packages/*/dist"],  // 排除子包构建产物
+  "references": [{ "path": "./packages/utils" }, { "path": "./packages/core" }]
+}

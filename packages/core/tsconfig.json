@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "references": [{ "path": "../utils" }],  // 声明依赖 utils
+  "include": ["src/**/*"],  // 子包自己管理源码范围
+  "exclude": ["node_modules", "dist"]
+}
