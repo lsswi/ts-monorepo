@@ -48,6 +48,7 @@ tree -L 4 -I "node_modules"
 packages:
   - 'packages/*'
 ```
+<br>
 
 2. 依赖包的`package.json` 声明本地包依赖，**让pnpm解析为本地包（非远程npm包），保证运行时能找到**
 
@@ -56,6 +57,7 @@ packages:
     "@ts-monorepo/utils": "workspace:*"  
   }
 ```
+<br>
 
 3. ts路径映射，根目录的`tsconfig.json` 配置baseUrl和paths，**让 TS 把 `@xxx/yyy` 映射到实际源码路径，解决 “找不到模块” 编译错误**
 
@@ -70,6 +72,7 @@ packages:
   "references": [{ "path": "./packages/utils" }, { "path": "./packages/core" }]
 }
 ```
+<br>
 
 4. 根目录`tsconfig.json` 配置模块解析，**匹配 ESM 模块规则，正确解析包名导入（和子包 `type: module` 对应）**
 
@@ -81,6 +84,7 @@ packages:
   },
 }
 ```
+<br>
 
 5. 声明项目组合模式，被依赖包声明`composite: true` ，**标记为 “可被引用的 TS 项目”，生成类型缓存，让 TS 识别其类型**
 
@@ -91,6 +95,7 @@ packages:
   },
 }
 ```
+<br>
 
 6. 项目引用，依赖包的`tsconfig.json`配置references，**强制 TS 先解析被依赖包的类型，保证类型依赖顺序，避免类型缺失**
 
