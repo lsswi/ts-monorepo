@@ -111,14 +111,53 @@ packages:
 
 ## 关于打包
 
-### 为什么要使用Turbo？
+### tsup
+> 基于esbuild，可简单执行单行命令或指定配置文件构建
+
+```
+tsup src/index.ts --format esm,cjs --dts --clean --outDir dist
+```
+
+### Turbo
+> Turbo只调度任务，不处理编译和打包
+
 如果是无脑`pnpm -r build`，有可能出现主包打的过程中子包还没打好，导致打包错误，需要在根`package.json`中指定顺序，看起来非常蠢。（详见**tag：build-in-order**
 ```json
 "build": "pnpm --filter @ts-monorepo/utils build && pnpm --filter @ts-monorepo/core build",
 ```
-使用 `Turbo` 可以自动处理依赖顺序，非常优雅。
+使用 `Turbo` 可以分析包之间的依赖并自动按顺序构建，非常优雅。
+
+<br>
+
+1. 根目录添加`turbo.json`文件
+```json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"], // 先构建依赖的包（如 core 依赖 utils，先 build utils）
+      "outputs": ["dist/**"]  // 缓存 dist 目录
+    },
+    "test": {
+      "dependsOn": ["build"], // 先 build 再 test
+      "outputs": []
+    }
+  }
+}
+
+```
+2. 根目录package.json修改build命令：
+```
+  "scripts": {
+    "build": "turbo run build",
+    "build:utils": "turbo run build --filter @ts-monorepo/utils build",
+    "build:core": "turbo run build @ts-monorepo/core build",
+  },
+```
 
 
+
+<br>
 
 ## changeset 使用流程
 
