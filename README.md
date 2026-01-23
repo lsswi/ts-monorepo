@@ -141,10 +141,13 @@ pnpm changeset
 
 feat: add ccc
 ```
+<br>
 
 2. 提交代码和`.changeset`下面生成的.md文件并提交CR完成合入`master`分支。
+<br>
 
 3. 发布的时候切出发布分支，如`realease/v0.17`，执行`pnpm changeset version`自动完成版本更新和.md文件的删除，然后合回`master`分支。
+<br>
 
 4. 对release分支针对不同的包打tag，即多个包用同一个commit打对应的tag
 ```shell
