@@ -62,13 +62,11 @@ packages:
 ```json
 {
   "compilerOptions": {
-    ...
     "baseUrl": ".",
     "paths": {
       "@ts-monorepo/*": ["packages/*/src"]
     }
   },
-  ...
   "references": [{ "path": "./packages/utils" }, { "path": "./packages/core" }]
 }
 ```
@@ -80,9 +78,7 @@ packages:
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-		...
   },
-	...
 }
 ```
 
@@ -91,7 +87,6 @@ packages:
 ```json
 {
   "compilerOptions": {
-		...
     "composite": true  // 支持 TS 项目引用
   },
 }
@@ -101,7 +96,59 @@ packages:
 
 ```json
 {
-	...
   "references": [{ "path": "../utils" }],  // 声明依赖 utils
 }
 ```
+
+<br>
+
+
+## changeset 使用流程
+
+1. 改完代码后，执行`pnpm changeset`进入命令行交互，选择对应的子包修改并创建提交内容；如果A包依赖B包，仅需更新B包即可，A包后面会自动更新依赖B的版本号。
+```shell
+pnpm changeset
+
+🦋  Which packages would you like to include? · @ts-monorepo/utils
+🦋  Which packages should have a major bump? · No items were selected
+🦋  Which packages should have a minor bump? · @ts-monorepo/utils
+🦋  Please enter a summary for this change (this will be in the changelogs).
+🦋    (submit empty line to open external editor)
+🦋  Summary · feat: add ddd feature
+🦋  
+🦋  === Summary of changesets ===
+🦋  minor:  @ts-monorepo/utils
+🦋  
+🦋  Note: All dependents of these packages that will be incompatible with the new version will be patch bumped when this changeset is applied.
+🦋  
+🦋  Is this your desired changeset? (Y/n) · true
+🦋  Changeset added! - you can now commit it
+🦋  
+🦋  If you want to modify or expand on the changeset summary, you can find it here
+🦋  info /Users/joyyieli/Codes/personal/ts-monorepo/.changeset/grumpy-dogs-battle.md
+
+```
+执行完后会在.changeset 下会生成对应的.md文件。
+```
+---
+'@ts-monorepo/utils': minor
+---
+
+feat: add ccc
+```
+
+2. 提交代码和`.changeset`下面生成的.md文件并提交CR完成合入`master`分支。
+
+3. 发布的时候切出发布分支，如`realease/v0.17`，执行`pnpm changeset version`自动完成版本更新和.md文件的删除，然后合回`master`分支。
+
+4. 对release分支针对不同的包打tag，即多个包用同一个commit打对应的tag
+```shell
+# -a 标签名，-m 备注信息
+git tag -a utils@1.0.1 -m "utils v1.0.1"
+git tag -a core@2.0.1 -m "core v2.0.1"
+
+git tag
+
+git push origin --tags
+```
+
