@@ -1,9 +1,9 @@
 # ts-monorepo
 
-> **pnpm-workspace + changeset + tsup + turbo/nx**
+> **workspace + changeset + tsup + turbo/nx**
 > 
-> - pnpm-workspace：管理多包之间的workspace，保证包之间的引用在本地而非远程
-> - changeset：管理版本变更，包和包之间的版本管理
+> - workspace：声明是多包项目，保证子包之间的引用在本地而非远程
+> - changeset：管理包的版本变更
 > - tsup：基于esbuild的打包工具
 > - turbo/nx：构建任务调度和缓存（一般使用turbo即可）
 
@@ -33,7 +33,7 @@ tree -L 4 -I "node_modules"
 │       │   └── index.ts
 │       └── tsconfig.json
 ├── pnpm-lock.yaml
-├── pnpm-workspace.yaml
+├── pnpm-workspace.yaml // 非必需
 ├── README.md
 └── tsconfig.json
 ```
