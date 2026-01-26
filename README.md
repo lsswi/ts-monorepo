@@ -1,12 +1,11 @@
 # ts-monorepo
 
-> **pnpm-workspace + changeset + tsup + turbo + nx**
+> **pnpm-workspace + changeset + tsup + turbo/nx**
 > 
 > - pnpm-workspace：管理多包之间的workspace，保证包之间的引用在本地而非远程
 > - changeset：管理版本变更，包和包之间的版本管理
 > - tsup：基于esbuild的打包工具
-> - turbo：
-> - nx：发布构建和编排
+> - turbo/nx：构建任务调度和缓存（一般使用turbo即可）
 
 <br>
 
