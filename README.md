@@ -43,11 +43,18 @@ tree -L 4 -I "node_modules"
 
 ## 基础配置
 
-1. 根目录 `pnpm-workspace.yml` ，**让pnpm识别所有子包为工作区包，支持`workspace:*` 依赖**
+1. 根目录 `pnpm-workspace.yml` ，**让pnpm识别所有子包为工作区包，支持`workspace:*` 依赖**；（或直接在根目录的`package.json`中声明workspace）。
 
-```yaml
+```
+# yaml 
 packages:
   - 'packages/*'
+
+# package.json
+{
+  ...
+  "workspaces": ["packages/*"]
+}
 ```
 <br>
 
