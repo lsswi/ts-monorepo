@@ -7,5 +7,9 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean --outDir dist",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4"
   }
 }
